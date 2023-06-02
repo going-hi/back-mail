@@ -12,15 +12,13 @@ const EMAILS = require('../app.constants')
 //*     message
 //* }
 
-// http://localhost:5000/
+
 router.post('/', async (req, res, next) => {
     try {
-        const {email, name, city, tel} = req.body
-        console.log(EMAILS)
+        const {email, name, city, tel, message} = req.body
         EMAILS.forEach( EMAIL => {
-            mailService.sendMessage(EMAIL, {email, name, city, tel})
+            mailService.sendMessage(EMAIL, {email, name, city, tel, message})
         })
-        await mailService.sendMessage(req.body.email, {email, name, city, tel})
         res.status(204).json({})
     }catch(e) {
         next(e)

@@ -14,7 +14,7 @@ class MailService {
         })
     }
     
-    async sendMessage(to, {email, city, name, tel}) {
+    async sendMessage(to, {email, city, name, tel, message}) {
         try {
             await this.transport.sendMail({
                 from: process.env.SMTP_USER,
@@ -26,6 +26,7 @@ class MailService {
                     <h2>${email}</h2>
                     <h2>Город/Страна: ${city}</h2>
                     <h2>Телефон: ${tel}</h2>
+                    <h2>Сообщение: ${message}</h2>
                 `
             })
         }catch(e) {
